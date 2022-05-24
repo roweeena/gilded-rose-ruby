@@ -40,8 +40,10 @@ describe GildedRose do
 	# - "Aged Brie" actually increases in Quality the older it gets
      context "Aged Brie" do
       it "increases in quality each day" do
+
         items = [Item.new("Aged Brie", 1, 1)]
         GildedRose.new(items).update_quality()
+
         expect(items[0].quality).to eq 2
       end
 
@@ -102,6 +104,14 @@ describe GildedRose do
         items = [Item.new("Backstage passes to a TAFKAL80ETC concert", 0, 5)]
         GildedRose.new(items).update_quality()
         expect(items[0].quality).to eq 0
+      end
+    end
+
+    context "Conjured Mana Cake" do
+      it "degrades in quality twice as fast" do
+        items = [Item.new("Conjured Mana Cake", 7, 10)]
+        GildedRose.new(items).update_quality()
+        expect(items[0].quality).to eq 8
       end
     end
 
